@@ -5,7 +5,10 @@ def _print_type(t):
     if t is None:
         return ""
     elif isinstance(t, tuple):
-        return ".".join(t)
+        try:
+            return ".".join(t)
+        except:
+            return str(t)
     elif hasattr(t, "__name__"):
         return t.__name__
     else:
