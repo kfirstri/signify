@@ -28,7 +28,7 @@
 import hashlib
 import logging
 import pathlib
-
+import os
 from pyasn1.codec.ber import decoder as ber_decoder
 
 from signify.asn1 import guarded_ber_decode
@@ -40,8 +40,17 @@ from . import asn1
 
 logger = logging.getLogger(__name__)
 
+def get_certificates_path():
+    location_from_environment = os.getenv(CERTIFICATE_ENV_LOCATION)
+
+    if location_from_environment:
+        return location_from_environment
+
+    return pathlib.Path(__file__).resolve().parent / "certs" / "authenticode"
+
 ACCEPTED_DIGEST_ALGORITHMS = (hashlib.md5, hashlib.sha1)
-CERTIFICATE_LOCATION = pathlib.Path(__file__).resolve().parent / "certs" / "authenticode"
+CERTIFICATE_ENV_LOCATION = "SIGNATURE_VERIFIER_CERTIFICATES_LOCATION"
+CERTIFICATE_LOCATION = get_certificates_path()
 TRUSTED_CERTIFICATE_STORE = FileSystemCertificateStore(location=CERTIFICATE_LOCATION, trusted=True)
 
 
