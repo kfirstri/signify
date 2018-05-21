@@ -40,6 +40,8 @@ from . import asn1
 
 logger = logging.getLogger(__name__)
 
+CERTIFICATE_ENV_LOCATION = "SIGNATURE_VERIFIER_CERTIFICATES_LOCATION"
+
 def get_certificates_path():
     location_from_environment = os.getenv(CERTIFICATE_ENV_LOCATION)
 
@@ -49,7 +51,6 @@ def get_certificates_path():
     return pathlib.Path(__file__).resolve().parent / "certs" / "authenticode"
 
 ACCEPTED_DIGEST_ALGORITHMS = (hashlib.md5, hashlib.sha1)
-CERTIFICATE_ENV_LOCATION = "SIGNATURE_VERIFIER_CERTIFICATES_LOCATION"
 CERTIFICATE_LOCATION = get_certificates_path()
 TRUSTED_CERTIFICATE_STORE = FileSystemCertificateStore(location=CERTIFICATE_LOCATION, trusted=True)
 
