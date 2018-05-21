@@ -21,8 +21,8 @@ setup(
     package_data={'signify': ['*.pem']},
     include_package_data=True,
 
-    url='https://github.com/ralphje/signify',
-    download_url='https://github.com/ralphje/signify/tarball/v' + about['__version__'],
+    url='https://github.com/kfirstri/signify',
+    download_url='https://github.com/ralphje/kfirstri/tarball/v' + about['__version__'],
     license='MIT',
     author='Ralph Broenink',
     author_email='ralph@ralphbroenink.net',
