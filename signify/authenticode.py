@@ -46,7 +46,7 @@ def get_certificates_path():
     location_from_environment = os.getenv(CERTIFICATE_ENV_LOCATION)
 
     if location_from_environment:
-        return location_from_environment
+        return pathlib.Path(location_from_environment).resolve()
 
     return pathlib.Path(__file__).resolve().parent / "certs" / "authenticode"
 
